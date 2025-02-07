@@ -1,3 +1,5 @@
 ^CODEOWNERS$
 ^.*\.code-workspace$
 ^LICENSE\.md$
+^.*\.Rproj$
+^\.Rproj\.user$
