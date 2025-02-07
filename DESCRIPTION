@@ -21,11 +21,12 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Depends: R (>= 4.1.0)
 Imports:
+    cli,
     rlang,
     sparklyr
 Suggests:
-    pysparklyr,
-    reticulate
+    reticulate,
+    pysparklyr
 URL: https://github.com/The-Strategy-Unit/sconn
 BugReports: https://github.com/The-Strategy-Unit/sconn/issues
 Remotes: mlverse/pysparklyr
