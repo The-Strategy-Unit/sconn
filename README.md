@@ -5,6 +5,12 @@ A very simple package that provides a function to connect to a
 The user should set up Databricks authentication details as environment
   variables, ideally in their `.Renviron` file.
 
+## Caveat
+
+If you have the `radian` console installed, this package will not work in
+  VSCode, due to a conflict with {reticulate} / Python virtual environments.
+It should work in RStudio and Positron.
+
 ## Installation
 
 ```r
