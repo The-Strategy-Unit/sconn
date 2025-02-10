@@ -5,11 +5,17 @@ A very simple package that provides a function to connect to a
 The user should set up Databricks authentication details as environment
   variables, ideally in their `.Renviron` file.
 
-## Caveat
+
+## Caveats
 
 If you have the `radian` console installed, this package will not work in
   VSCode, due to a conflict with {reticulate} / Python virtual environments.
 It should work in RStudio and Positron.
+
+The first attempt to connect may take a long time, or fail, while the cluster
+  spins up.
+Subsequent connection attempts should then succeed, however.
+
 
 ## Installation
 
@@ -20,6 +26,7 @@ remotes::install_github("The-Strategy-Unit/sconn")
 Once installed, there are some initial setup steps to complete before using the
   connection function for the first time. See below.
 
+
 ## Quick usage
 
 ```r
@@ -27,6 +34,7 @@ library(sconn)
 sc()
 sc_disconnect()
 ```
+
 
 ## Setup: Environment variables
 
@@ -116,10 +124,12 @@ pysparklyr::install_databricks(
 )
 ```
 
+
 ## Problems
 
 Please use GitHub to post an issue if you experience problems setting up or
   using the package.
+
 
 ## Further notes and links
 
