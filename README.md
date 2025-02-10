@@ -22,9 +22,19 @@ Once installed, there are some initial setup steps to complete before using the
 
 ## Quick usage
 
+It should be as simple as this:
+
 ```r
 library(sconn)
+
+# Initiate the connection - but this may take a while on first connect
 sc()
+
+# You can then keep on using the `sc()` function, it will just use the existing
+# connection (not try to create a new one).
+sparklyr::spark_connection_is_open(sc())
+
+# Then disconnect once you are done
 sc_disconnect()
 ```
 
@@ -115,6 +125,21 @@ pysparklyr::install_databricks(
   new_env = FALSE
 )
 ```
+
+## Usage options
+
+There are two main ways you can use the package to handle a connection,
+  for example within an R script you are writing.
+
+1. You can just use the `sc()` function each time.
+  The advantage of this is that in theory it will kick the connection back up
+  if it has gone to sleep (is that a thing?) or disconnected.
+  But if it's still connected, it will just use the existing connection; it
+  won't try to restart the connection from scratch.
+2. Or you can assign the connection to an object, like: `sc <- sc()` and then
+  just refer to the `sc` object in your code.
+  But if it becomes disconnected, you will need to run `sc <- sc()` again.
+
 
 ## Problems
 
