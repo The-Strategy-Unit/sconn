@@ -106,7 +106,7 @@ NB The `force=TRUE` parameter means that any existing virtual environment called
 reticulate::virtualenv_create(
   envname = Sys.getenv("DATABRICKS_VENV"),
   python = "3.12", # match this to the version of Python installed above
-  packages = "pyspark",
+  packages = c("pyspark", "pandas", "pyarrow"),
   force = TRUE
 )
 ```
