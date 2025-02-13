@@ -65,21 +65,19 @@ This will save you trying to find the file each time you want to edit it 😊.
 Add the following lines to your `.Renviron`:
 
 ```
-DATABRICKS_HOST=<var-databricks-url>
-DATABRICKS_TOKEN=<var-personal-access-token>
-DATABRICKS_CLUSTER_ID=<var-cluster-id>
-DATABRICKS_VENV="databricks"
+DATABRICKS_HOST=
+DATABRICKS_TOKEN=
+DATABRICKS_CLUSTER_ID=
+DATABRICKS_VENV=
 ```
 
-and replace each `<var->` element with the following information:
+and add the following information after each `=` sign:
 
-* for DATABRICKS_HOST add the base URL of your Databricks instance, beginning with `https://` and perhaps ending with `azuredatabricks.net`
-* for DATABRICKS_TOKEN, go to your Databricks web instance, find your user settings, and in the 'Developer' section under 'Access tokens' click the 'Manage' button, then 'Generate new token'.
-* for DATABRICKS_CLUSTER_ID, go to your Databricks instance, click on 'Compute' in the left-hand side menu, then click on the name of the cluster you are to use. The cluster ID will then be in the page URL after 'compute/clusters', or you can click on the three-dot menu and then 'View JSON'.
-
-The DATABRICKS_VENV variable will be the name of your local Python virtual
+* for DATABRICKS_HOST, add the base URL of your Databricks instance, beginning with `https://` and perhaps ending with `azuredatabricks.net`
+* for DATABRICKS_TOKEN, go to your Databricks web instance, find your user settings, and in the 'Developer' section under 'Access tokens' click the 'Manage' button, then 'Generate new token' ([databricks documentation](https://docs.databricks.com/en/dev-tools/auth/pat.html#databricks-personal-access-tokens-for-workspace-users))
+* for DATABRICKS_CLUSTER_ID, go to your Databricks instance, click on 'Compute' in the left-hand side menu, then click on the name of the cluster you are to use. Click on the three-dot (`⁝`) menu and then 'View JSON'
+* for DATABRICKS_VENV, a simple `databricks` is the suggested value, but you can set this to whatever name you like. This variable will be the name of your local Python virtual
   environment that will store the necessary Python libraries.
-  The name can be anything you want but it's best to leave it as "databricks".
 
 Once you have added these variables to your `.Renviron`, save it and restart
   your R session.
@@ -116,7 +114,7 @@ NB The `force=TRUE` parameter means that any existing virtual environment called
 reticulate::virtualenv_create(
   envname = Sys.getenv("DATABRICKS_VENV"),
   python = "3.12", # match this to the version of Python installed above
-  packages = "pyspark",
+  packages = c("pandas", "pyarrow", "pyspark"),
   force = TRUE
 )
 ```
@@ -160,3 +158,4 @@ Please use GitHub to post an issue if you experience problems setting up or
 * The development version of {pysparklyr} is [currently required on Windows](https://github.com/mlverse/pysparklyr/issues/125), in order to avoid an error when [trying to install RPy2](https://rpy2.github.io/doc/v3.5.x/html/overview.html#installation).
 * [Posit/RStudio documentation](https://posit.co/blog/databricks-clusters-in-rstudio-with-sparklyr/)
 * [Posit Spark/Databricks Connect documentation](https://spark.posit.co/deployment/databricks-connect.html)
+* [Databricks personal access tokens for workspace users](https://docs.databricks.com/en/dev-tools/auth/pat.html#databricks-personal-access-tokens-for-workspace-users)
