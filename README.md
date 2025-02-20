@@ -155,7 +155,6 @@ Please use GitHub to post an issue if you experience problems setting up or
 
 ## Further notes and links
 
-* The development version of {pysparklyr} is [currently required on Windows](https://github.com/mlverse/pysparklyr/issues/125), in order to avoid an error when [trying to install RPy2](https://rpy2.github.io/doc/v3.5.x/html/overview.html#installation).
 * [Posit/RStudio documentation](https://posit.co/blog/databricks-clusters-in-rstudio-with-sparklyr/)
 * [Posit Spark/Databricks Connect documentation](https://spark.posit.co/deployment/databricks-connect.html)
 * [Databricks personal access tokens for workspace users](https://docs.databricks.com/en/dev-tools/auth/pat.html#databricks-personal-access-tokens-for-workspace-users)

@@ -1,7 +1,7 @@
 Package: sconn
 Title: Handles Spark connection to Databricks in R
-Version: 0.0.1
-Authors@R: 
+Version: 0.0.2
+Authors@R:
     c(
         person(
             "Fran", "Barton",
@@ -29,4 +29,3 @@ Suggests:
     pysparklyr
 URL: https://github.com/The-Strategy-Unit/sconn
 BugReports: https://github.com/The-Strategy-Unit/sconn/issues
-Remotes: mlverse/pysparklyr
