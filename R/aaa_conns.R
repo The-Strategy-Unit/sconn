@@ -10,5 +10,7 @@ sc_conn <- function() {
   )
 }
 
-.conns <- rlang::new_environment()
-rlang::env_bind_lazy(.conns, sc_conn = sc_conn())
+.onLoad <- function(...) {
+  .conns <<- rlang::new_environment()
+  rlang::env_bind_lazy(.conns, sc = sc_conn())
+}
