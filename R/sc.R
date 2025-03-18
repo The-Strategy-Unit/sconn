@@ -8,10 +8,10 @@
 #' @returns The connection object, activating the connection
 #' @export
 sc <- function(hide_output = TRUE) {
-  if (is.null(get0("sc_conn", .conns))) {
-    rlang::env_bind_lazy(.conns, sc_conn = sc_conn())
+  if (!rlang::env_has(.conns, "sc")) {
+    rlang::env_bind_lazy(.conns, sc = sc_conn())
   }
-  sc <- get0("sc_conn", .conns)
+  sc <- rlang::env_get(.conns, "sc", default = NULL)
   if (hide_output) invisible(sc) else sc
 }
 
@@ -23,14 +23,13 @@ sc <- function(hide_output = TRUE) {
 #' @returns TRUE if successful
 #' @export
 sc_disconnect <- function() {
-  if (is.null(get0("sc_conn", .conns))) {
+  if (rlang::env_has(.conns, "sc")) {
+    res <- tryCatch(sparklyr::spark_disconnect(.conns$sc), error = \(e) FALSE)
+    rlang::env_unbind(.conns, "sc")
+    rlang::env_bind_lazy(.conns, sc = sc_conn())
+  } else {
     cli::cli_alert_info("sc_disconnect: No Spark connection found.")
     res <- TRUE
-  } else {
-    sc <- get0("sc_conn", .conns)
-    res <- tryCatch(sparklyr::spark_disconnect(sc), error = \(e) FALSE)
-    rlang::env_unbind(.conns, "sc_conn")
   }
-  rlang::env_bind_lazy(.conns, sc_conn = sc_conn())
   invisible(res %||% TRUE)
 }
